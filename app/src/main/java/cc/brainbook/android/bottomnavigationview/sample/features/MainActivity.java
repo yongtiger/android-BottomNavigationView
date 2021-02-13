@@ -15,6 +15,7 @@ import cc.brainbook.android.bottomnavigationview.sample.features.setupwithviewpa
 import cc.brainbook.android.bottomnavigationview.sample.features.style.StyleActivity;
 import cc.brainbook.android.bottomnavigationview.sample.features.viewpager.WithViewPagerActivity;
 
+///https://github.com/ittianyu/BottomNavigationViewEx
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityMainBinding bind;
 
