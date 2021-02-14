@@ -9,8 +9,8 @@ buildscript {
         ]
 
         release = [
-                versionName: "0.0.4",   ///v0.0.4#[BezierCurve]
-                versionCode: 4
+                versionName: "0.0.5",   ///v0.0.5#app:bezierCurveCircleRadius="75" ///0:no Curve, 60, 75, 90; 注意：使用Curve后，不能再设置app:itemBackground！
+                versionCode: 5
         ]
     }
 

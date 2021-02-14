@@ -261,7 +261,7 @@
                 style="@style/text_black"
                 android:text="@string/bezier_curve" />
 
-            <!--app:bezierCurveCircleRadius="75" ///0:no Curve, 60, 75, 90-->
+            <!--app:bezierCurveCircleRadius="75" ///0:no Curve, 60, 75, 90; 注意：使用Curve后，不能再设置app:itemBackground！-->
             <cc.brainbook.android.bottomnavigationview.BottomNavigationViewEx
                 android:id="@+id/bnve_bezier_curve"
                 style="@style/bnve_primary_bg"
