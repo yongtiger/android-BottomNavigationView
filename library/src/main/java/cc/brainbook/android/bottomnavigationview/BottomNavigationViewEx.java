@@ -2,29 +2,52 @@ package cc.brainbook.android.bottomnavigationview;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.shape.MaterialShapeDrawable;
 
 public class BottomNavigationViewEx extends BottomNavigationViewInner {
 
     public BottomNavigationViewEx(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public BottomNavigationViewEx(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public BottomNavigationViewEx(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        ///[BezierCurve]
+        if (attrs != null) {
+            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigationViewEx, 0, 0);
+            try {
+                mBezierCurveCircleRadius = ta.getInt(R.styleable.BottomNavigationViewEx_bezierCurveCircleRadius, 0);
+            } finally {
+                ta.recycle();
+            }
+
+            if (mBezierCurveCircleRadius != 0) {
+                init();
+            }
+        }
     }
 
     @Override
@@ -345,4 +368,105 @@ public class BottomNavigationViewEx extends BottomNavigationViewInner {
             return this;
         }
     }
+
+
+    /* -----------------------///[BezierCurve]--------------------- */
+    ///https://mlog.club/article/740643
+    ///https://proandroiddev.com/how-i-drew-custom-shapes-in-bottom-bar-c4539d86afd7
+
+    /** the CURVE_CIRCLE_RADIUS represent the radius of the fab button */
+    private int mBezierCurveCircleRadius;   ///0:no Curve, 60, 75, 90
+
+    private Path mPath;
+    private Paint mPaint;
+
+    // the coordinates of the first curve
+    private final Point mFirstCurveStartPoint = new Point();
+    private final Point mFirstCurveEndPoint = new Point();
+    private final Point mFirstCurveControlPoint1 = new Point();
+    private final Point mFirstCurveControlPoint2 = new Point();
+
+    //the coordinates of the second curve
+    @SuppressWarnings("FieldCanBeLocal")
+    private Point mSecondCurveStartPoint = new Point();
+    private final Point mSecondCurveEndPoint = new Point();
+    private final Point mSecondCurveControlPoint1 = new Point();
+    private final Point mSecondCurveControlPoint2 = new Point();
+    private int mNavigationBarHeight;
+
+    private void init() {
+        mPath = new Path();
+        mPaint = new Paint();
+        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        mPaint.setColor(getBackgroundColor());
+        setBackgroundColor(Color.TRANSPARENT);
+    }
+
+    @ColorInt
+    private int getBackgroundColor() {
+        if (getBackground() instanceof MaterialShapeDrawable) {
+            ColorStateList colorStateList = ((MaterialShapeDrawable) getBackground()).getFillColor();
+            if (colorStateList != null) {
+                return colorStateList.getDefaultColor();
+            }
+        } else if (getBackground() instanceof ColorDrawable) {
+            return ((ColorDrawable) getBackground()).getColor();
+        }
+
+        return Color.TRANSPARENT;
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        if (mBezierCurveCircleRadius != 0) {
+            // get width and height of navigation bar
+            // Navigation bar bounds (width & height)
+            int mNavigationBarWidth = getWidth();
+            mNavigationBarHeight = getHeight();
+            // the coordinates (x,y) of the start point before curve
+            mFirstCurveStartPoint.set((mNavigationBarWidth / 2) - (mBezierCurveCircleRadius * 2) - (mBezierCurveCircleRadius / 3), 0);
+            // the coordinates (x,y) of the end point after curve
+            mFirstCurveEndPoint.set(mNavigationBarWidth / 2, mBezierCurveCircleRadius + (mBezierCurveCircleRadius / 4));
+            // same thing for the second curve
+            mSecondCurveStartPoint = mFirstCurveEndPoint;
+            mSecondCurveEndPoint.set((mNavigationBarWidth / 2) + (mBezierCurveCircleRadius * 2) + (mBezierCurveCircleRadius / 3), 0);
+
+            // the coordinates (x,y)  of the 1st control point on a cubic curve
+            mFirstCurveControlPoint1.set(mFirstCurveStartPoint.x + mBezierCurveCircleRadius + (mBezierCurveCircleRadius / 4), mFirstCurveStartPoint.y);
+            // the coordinates (x,y)  of the 2nd control point on a cubic curve
+            mFirstCurveControlPoint2.set(mFirstCurveEndPoint.x - (mBezierCurveCircleRadius * 2) + mBezierCurveCircleRadius, mFirstCurveEndPoint.y);
+
+            mSecondCurveControlPoint1.set(mSecondCurveStartPoint.x + (mBezierCurveCircleRadius * 2) - mBezierCurveCircleRadius, mSecondCurveStartPoint.y);
+            mSecondCurveControlPoint2.set(mSecondCurveEndPoint.x - (mBezierCurveCircleRadius + (mBezierCurveCircleRadius / 4)), mSecondCurveEndPoint.y);
+
+            mPath.reset();
+            mPath.moveTo(0, 0);
+            mPath.lineTo(mFirstCurveStartPoint.x, mFirstCurveStartPoint.y);
+
+            mPath.cubicTo(mFirstCurveControlPoint1.x, mFirstCurveControlPoint1.y,
+                    mFirstCurveControlPoint2.x, mFirstCurveControlPoint2.y,
+                    mFirstCurveEndPoint.x, mFirstCurveEndPoint.y);
+
+            mPath.cubicTo(mSecondCurveControlPoint1.x, mSecondCurveControlPoint1.y,
+                    mSecondCurveControlPoint2.x, mSecondCurveControlPoint2.y,
+                    mSecondCurveEndPoint.x, mSecondCurveEndPoint.y);
+
+            mPath.lineTo(mNavigationBarWidth, 0);
+            mPath.lineTo(mNavigationBarWidth, mNavigationBarHeight);
+            mPath.lineTo(0, mNavigationBarHeight);
+            mPath.close();
+        }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+        if (mBezierCurveCircleRadius != 0) {
+            canvas.drawPath(mPath, mPaint);
+        }
+    }
+
 }

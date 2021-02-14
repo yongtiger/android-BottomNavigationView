@@ -257,6 +257,19 @@
                 app:itemTextColor="@color/selector_item_primary_color"
                 app:menu="@menu/menu_navigation" />
 
+            <TextView
+                style="@style/text_black"
+                android:text="@string/bezier_curve" />
+
+            <!--app:bezierCurveCircleRadius="75" ///0:no Curve, 60, 75, 90-->
+            <cc.brainbook.android.bottomnavigationview.BottomNavigationViewEx
+                android:id="@+id/bnve_bezier_curve"
+                style="@style/bnve_primary_bg"
+                app:itemIconTint="@color/selector_item_primary_color"
+                app:itemTextColor="@color/selector_item_primary_color"
+                app:bezierCurveCircleRadius="75"
+                app:menu="@menu/menu_navigation" />
+
         </LinearLayout>
 
     </ScrollView>
