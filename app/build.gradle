@@ -33,6 +33,8 @@ android {
 }
 
 dependencies {
+    implementation project(':library')
+
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -40,7 +42,7 @@ dependencies {
     implementation project(':library')
 
     // leakcanary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.5'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 
