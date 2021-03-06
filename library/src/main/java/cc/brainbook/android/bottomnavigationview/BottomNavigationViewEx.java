@@ -428,6 +428,7 @@ public class BottomNavigationViewEx extends BottomNavigationViewInner {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
+        ///[BezierCurve#AnchorView]
         if (mAnchorView != null) {
             mBezierCurveCircleRadius = (int) (mAnchorView.getHeight() + mAnchorView.getY() - getY());
         }
