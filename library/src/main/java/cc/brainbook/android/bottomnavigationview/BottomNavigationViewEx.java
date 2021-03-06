@@ -425,8 +425,12 @@ public class BottomNavigationViewEx extends BottomNavigationViewInner {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+
+        if (!changed) {
+            return;
+        }
 
         ///[BezierCurve#AnchorView]
         if (mAnchorView != null && mAnchorView.getHeight() > 0 && mAnchorView.getY() > 0) {

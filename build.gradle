@@ -9,8 +9,8 @@ buildscript {
         ]
 
         release = [
-                versionName: "0.0.9",   ///v0.0.9#[BezierCurve#AnchorView]
-                versionCode: 9
+                versionName: "0.0.10",   ///v0.0.10#[BezierCurve#onLayout()]
+                versionCode: 10
         ]
     }
 
