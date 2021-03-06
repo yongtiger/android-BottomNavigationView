@@ -41,6 +41,7 @@ public class BottomNavigationViewEx extends BottomNavigationViewInner {
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigationViewEx, 0, 0);
             try {
                 ///dp2px
+                ///https://blog.csdn.net/zhangphil/article/details/80613879
                 mBezierCurveCircleRadius = Math.round(getResources().getDisplayMetrics().density
                         * ta.getInt(R.styleable.BottomNavigationViewEx_bezierCurveCircleRadius, 0));
             } finally {

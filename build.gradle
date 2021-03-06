@@ -9,8 +9,8 @@ buildscript {
         ]
 
         release = [
-                versionName: "0.0.12",   ///v0.0.12#[BezierCurve#dp2px]
-                versionCode: 12
+                versionName: "0.0.13",   ///v0.0.13#[BezierCurve#dp2px]
+                versionCode: 13
         ]
     }
 
