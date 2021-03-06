@@ -3,14 +3,14 @@ buildscript {
     ext {
         setup = [
                 compileSdk : 30,
-                buildTools : "30.0.2",
+                buildTools : "30.0.3",
                 minSdk     : 15,
                 targetSdk  : 30
         ]
 
         release = [
-                versionName: "0.0.6",   ///v0.0.6#upgrade gradle
-                versionCode: 6
+                versionName: "0.0.7",   ///v0.0.7#[BezierCurve#AnchorView]
+                versionCode: 7
         ]
     }
 

@@ -12,6 +12,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -376,6 +377,13 @@ public class BottomNavigationViewEx extends BottomNavigationViewInner {
 
     /** the CURVE_CIRCLE_RADIUS represent the radius of the fab button */
     private int mBezierCurveCircleRadius;   ///0:no Curve, 60, 75, 90
+    public void setBezierCurveCircleRadius(int bezierCurveCircleRadius) {
+        mBezierCurveCircleRadius = bezierCurveCircleRadius;
+    }
+    private View mAnchorView;
+    public void setAnchorView(View anchorView) {
+        mAnchorView = anchorView;
+    }
 
     private Path mPath;
     private Paint mPaint;
@@ -420,11 +428,16 @@ public class BottomNavigationViewEx extends BottomNavigationViewInner {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
+        if (mAnchorView != null) {
+            mBezierCurveCircleRadius = (int) (mAnchorView.getHeight() + mAnchorView.getY() - getY());
+        }
+
         if (mBezierCurveCircleRadius != 0) {
             // get width and height of navigation bar
             // Navigation bar bounds (width & height)
             int mNavigationBarWidth = getWidth();
             mNavigationBarHeight = getHeight();
+
             // the coordinates (x,y) of the start point before curve
             mFirstCurveStartPoint.set((mNavigationBarWidth / 2) - (mBezierCurveCircleRadius * 2) - (mBezierCurveCircleRadius / 3), 0);
             // the coordinates (x,y) of the end point after curve
