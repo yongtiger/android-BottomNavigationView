@@ -440,16 +440,16 @@ public class BottomNavigationViewEx extends BottomNavigationViewInner {
         if (mBezierCurveCircleRadius != 0) {
             // get width and height of navigation bar
             // Navigation bar bounds (width & height)
-            int mNavigationBarWidth = getWidth();
+            int navigationBarWidth = getWidth();
             mNavigationBarHeight = getHeight();
 
             // the coordinates (x,y) of the start point before curve
-            mFirstCurveStartPoint.set((mNavigationBarWidth / 2) - (mBezierCurveCircleRadius * 2) - (mBezierCurveCircleRadius / 3), 0);
+            mFirstCurveStartPoint.set((navigationBarWidth / 2) - (mBezierCurveCircleRadius * 2) - (mBezierCurveCircleRadius / 3), 0);
             // the coordinates (x,y) of the end point after curve
-            mFirstCurveEndPoint.set(mNavigationBarWidth / 2, mBezierCurveCircleRadius + (mBezierCurveCircleRadius / 4));
+            mFirstCurveEndPoint.set(navigationBarWidth / 2, mBezierCurveCircleRadius + (mBezierCurveCircleRadius / 4));
             // same thing for the second curve
             mSecondCurveStartPoint = mFirstCurveEndPoint;
-            mSecondCurveEndPoint.set((mNavigationBarWidth / 2) + (mBezierCurveCircleRadius * 2) + (mBezierCurveCircleRadius / 3), 0);
+            mSecondCurveEndPoint.set((navigationBarWidth / 2) + (mBezierCurveCircleRadius * 2) + (mBezierCurveCircleRadius / 3), 0);
 
             // the coordinates (x,y)  of the 1st control point on a cubic curve
             mFirstCurveControlPoint1.set(mFirstCurveStartPoint.x + mBezierCurveCircleRadius + (mBezierCurveCircleRadius / 4), mFirstCurveStartPoint.y);
@@ -471,8 +471,8 @@ public class BottomNavigationViewEx extends BottomNavigationViewInner {
                     mSecondCurveControlPoint2.x, mSecondCurveControlPoint2.y,
                     mSecondCurveEndPoint.x, mSecondCurveEndPoint.y);
 
-            mPath.lineTo(mNavigationBarWidth, 0);
-            mPath.lineTo(mNavigationBarWidth, mNavigationBarHeight);
+            mPath.lineTo(navigationBarWidth, 0);
+            mPath.lineTo(navigationBarWidth, mNavigationBarHeight);
             mPath.lineTo(0, mNavigationBarHeight);
             mPath.close();
         }
