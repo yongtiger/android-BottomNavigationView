@@ -41,8 +41,8 @@ public class CenterFabActivity extends AppCompatActivity {
         initView();
         initEvent();
 
-        ///[BezierCurve]
-        bind.bnve.setAnchorView(bind.fab);
+//        ///[BezierCurve]
+//        bind.bnve.setAnchorView(bind.fab);
     }
 
 

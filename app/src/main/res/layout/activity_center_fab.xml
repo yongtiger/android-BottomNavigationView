@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@android:color/holo_red_dark"
-            app:bezierCurveCircleRadius="75"
+            app:bezierCurveCircleRadius="45"
             app:itemIconTint="@color/selector_item_primary_color"
             app:itemTextColor="@color/selector_item_primary_color"
             app:menu="@menu/menu_navigation_center_fab" />
