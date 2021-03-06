@@ -23,14 +23,14 @@
             app:borderWidth="0dp"
             app:elevation="9dp" />
 
-        <!--app:bezierCurveCircleRadius="35" ///0:no Curve, 20 - 45-->
+        <!--app:bezierCurveCircleRadius="30" ///0:no Curve, 20 - 45-->
         <cc.brainbook.android.bottomnavigationview.BottomNavigationViewEx
             android:id="@+id/bnve"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@android:color/holo_red_dark"
-            app:bezierCurveCircleRadius="35"
+            app:bezierCurveCircleRadius="30"
             app:itemIconTint="@color/selector_item_primary_color"
             app:itemTextColor="@color/selector_item_primary_color"
             app:menu="@menu/menu_navigation_center_fab" />
