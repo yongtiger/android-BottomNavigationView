@@ -67,13 +67,13 @@ public class BottomNavigationViewInner extends BottomNavigationView {
                 com.google.android.material.R.styleable.BottomNavigationView,
                 defStyleAttr,
                 com.google.android.material.R.style.Widget_Design_BottomNavigationView,
-//                com.google.android.material.R.styleable.BottomNavigationView_itemTextAppearanceInactive,    ///com.google.android.material:material:1.3.0
-//                com.google.android.material.R.styleable.BottomNavigationView_itemTextAppearanceActive); ///com.google.android.material:material:1.3.0
-                com.google.android.material.R.styleable.NavigationBarView_itemTextAppearanceInactive,   ///com.google.android.material:material:1.4.0
-                com.google.android.material.R.styleable.NavigationBarView_itemTextAppearanceActive);    ///com.google.android.material:material:1.4.0
+                com.google.android.material.R.styleable.BottomNavigationView_itemTextAppearanceInactive,    ///com.google.android.material:material:1.3.0
+                com.google.android.material.R.styleable.BottomNavigationView_itemTextAppearanceActive); ///com.google.android.material:material:1.3.0
+//                com.google.android.material.R.styleable.NavigationBarView_itemTextAppearanceInactive,   ///com.google.android.material:material:1.4.0
+//                com.google.android.material.R.styleable.NavigationBarView_itemTextAppearanceActive);    ///com.google.android.material:material:1.4.0
         // clear if you don't have set item icon tint list
-//        if (!a.hasValue(com.google.android.material.R.styleable.BottomNavigationView_itemIconTint)) {   ///com.google.android.material:material:1.3.0
-        if (!a.hasValue(com.google.android.material.R.styleable.NavigationBarView_itemIconTint)) {  ///com.google.android.material:material:1.4.0
+        if (!a.hasValue(com.google.android.material.R.styleable.BottomNavigationView_itemIconTint)) {   ///com.google.android.material:material:1.3.0
+//        if (!a.hasValue(com.google.android.material.R.styleable.NavigationBarView_itemIconTint)) {  ///com.google.android.material:material:1.4.0
             clearIconTintColor();
         }
         a.recycle();
@@ -337,8 +337,8 @@ public class BottomNavigationViewInner extends BottomNavigationView {
         // 2. change field mShiftingMode value in mMenuView
 //        setField(mMenuView.getClass(), mMenuView, "isShifting", enable);
 //        mMenuView.updateMenuView();
-//        setLabelVisibilityMode(enable ? LabelVisibilityMode.LABEL_VISIBILITY_SELECTED : LabelVisibilityMode.LABEL_VISIBILITY_LABELED); ///com.google.android.material:material:1.3.0
-        setLabelVisibilityMode(enable ? BottomNavigationView.LABEL_VISIBILITY_SELECTED : BottomNavigationView.LABEL_VISIBILITY_LABELED); ///com.google.android.material:material:1.4.0
+        setLabelVisibilityMode(enable ? LabelVisibilityMode.LABEL_VISIBILITY_SELECTED : LabelVisibilityMode.LABEL_VISIBILITY_LABELED); ///com.google.android.material:material:1.3.0
+//        setLabelVisibilityMode(enable ? BottomNavigationView.LABEL_VISIBILITY_SELECTED : BottomNavigationView.LABEL_VISIBILITY_LABELED); ///com.google.android.material:material:1.4.0
         return this;
     }
 
