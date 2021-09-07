@@ -379,7 +379,7 @@ public class BottomNavigationViewEx extends BottomNavigationViewInner {
     ///https://proandroiddev.com/how-i-drew-custom-shapes-in-bottom-bar-c4539d86afd7
 
     /** the CURVE_CIRCLE_RADIUS represent the radius of the fab button */
-    private int mBezierCurveCircleRadius;   ///0:no Curve, 60, 75, 90
+    private int mBezierCurveCircleRadius;   ///0:no Curve, 20 - 45
     public void setBezierCurveCircleRadius(int bezierCurveCircleRadius) {
         mBezierCurveCircleRadius = bezierCurveCircleRadius;
     }
